@@ -1,5 +1,5 @@
-from telegram Update, ReplyKeyboardMarkup
-from telegram.ext Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram import Update, ReplyKeyboardMarkup
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
 TOKEN = '8478992800:AAGkMZXQ5LVYMEaHkjh6LRvpn_8mSuIz-pE'
 
@@ -18,41 +18,27 @@ def handle_message(update: Update, context: CallbackContext) -> None:
 
     if text == 'JOIN MENTOR VIP🏆':
         update.message.reply_text(
-            'WANT TO JOIN MENTOR VIP 🏆\n\n'
-            '𝗦𝘁𝗲𝗽 𝟭:- FREE MENTOR VIP join karne ke liye Binomo ya fir Quotex ka link se new account register kar lijiye👇\n'
-            'Binomo: https://binomo.com/en?a=67b579d50117\n'
-            'Quotex: https://broker-qx.pro/?lid=1375315\n\n'
-            '𝗦𝘁𝗲𝗽 𝟮:- Apne account me ₹2000 deposit kijiye 💸\n'
-            '𝗦𝘁𝗲𝗽 𝟯:- Apna Trader ID mujhe bhejiye (profile section me).\n'
-            'Send it Here: @Ayaan_Mentor\n\n'
-            'Fir aapko lifetime free MENTOR VIP access milega! 💚\n'
-            'NOTE: Account banane se pehle browser ka data clear kar lena.'
+            "VIP Group Join Karne Ke Liye Yeh Steps Follow Karo:\n\n"
+            "1. Apna name & screenshot bhejo\n"
+            "2. Payment info:\n"
+            "UPI ID: ayaansharma@ybl\n"
+            "Fee: ₹499 Lifetime\n"
+            "3. Uske baad VIP group ka link milega ✅"
         )
     elif text == 'TRADING E BOOKS📚':
-        update.message.reply_text(
-            '@Ayaan_Mentor pe DM karo. PDF helpful hogi trading learn karne ke liye.\n\n'
-            'Sharpen your knowledge & grow together. Happy trading journey 💝💐'
-        )
+        update.message.reply_text("Yahan aapko trading seekhne ke liye best E-books milengi:\nhttps://t.me/ayaanmentor")
     elif text == 'OUR CHANNEL':
-        update.message.reply_text(
-            'https://t.me/BinaryMentor07\n\n'
-            'Join hamara channel for daily sure‑shot signals aur learning content.'
-        )
+        update.message.reply_text("Join Our Official Channel for Updates:\nhttps://t.me/ayaanmentor")
     elif text == 'CONTACT WITH AYAN':
-        update.message.reply_text(
-            '@Ayaan_Mentor\n\n'
-            'Koi bhi sawal ho toh directly mujhe DM kijiye. Main help ke liye yahan hoon 👋🤗'
-        )
+        update.message.reply_text("Contact Me On Telegram:\n@Ayaan_Mentor")
     else:
-        update.message.reply_text("Please use the menu buttons 👇")
+        update.message.reply_text("Please use the menu buttons below 👇")
 
 def main():
-    updater = Updater(TOKEN, use_context=True)
+    updater = Updater(TOKEN)
     dp = updater.dispatcher
-
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
-
     updater.start_polling()
     updater.idle()
 
