@@ -1,1 +1,0 @@
-# entor-vip-bot.
