@@ -5,14 +5,12 @@ import threading
 
 TOKEN = "8478992800:AAGkMZXQ5LVYMEaHkjh6LRvpn_8mSuIz-pE"
 
-# 🔧 Fix: 'name' should be '__name__'
-app = Flask(__name__)
+app = Flask(name)
 
 @app.route('/')
 def home():
     return "Bot is running!"
 
-# ✅ Custom Buttons
 keyboard = [
     ["JOIN MENTOR VIP🏆"],
     ["TRADING E BOOKS📚"],
@@ -22,16 +20,12 @@ keyboard = [
 
 markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
 
-# ✅ Start Command Handler
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "WELCOME TRADER BM ALWAYS WITH YOU ❤️\n\n"
         "Asslamualikum ayaan here, I wish aapki trading journey profitable ho & I'm here to help and guide you anythime.\n\n"
-        "Check The Menu Buttons, Ye Aapki Madad Karega. 😊",
-        reply_markup=markup
-    )
+        "Check The Menu Buttons, Ye Aapki Madad Karega. 😊", reply_markup=markup)
 
-# ✅ Text Message Handler
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
 
@@ -65,14 +59,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "@Ayaan_Mentor Aapka koi bhi sawal hai? aap mujhse upar diye gaye username pe directly mujhse baat kar sakte hai 👋🤗"
         )
 
-# ✅ Run the Telegram Bot in a Separate Thread
 def run_bot():
     app_telegram = ApplicationBuilder().token(TOKEN).build()
     app_telegram.add_handler(CommandHandler("start", start))
     app_telegram.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
     app_telegram.run_polling()
 
-# ✅ Start Flask and Telegram Bot
-if __name__ == '__main__':
-    threading.Thread(target=run_bot).start()
-    app.run(host='0.0.0.0', port=8080)
+threading.Thread(target=run_bot).start()
